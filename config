@@ -1,0 +1,272 @@
+#
+# Meriti 
+#
+# Author: Tadeu Bastos
+#
+
+# Environment variables {{{
+
+SetEnv fvwm_dock_height 26
+SetEnv fvwm_font "xft:Sans:size=9:encoding=iso10646-1"
+SetEnv fvwm_scroll_ratio 5
+
+# }}}
+
+# Misc {{{
+
+DefaultColorset 0
+DefaultFont $[fvwm_font]
+DesktopSize 4x1
+EdgeResistance -1
+EwmhBaseStruts 0 0 $[fvwm_dock_height] 0
+HideGeometryWindow
+IgnoreModifiers L2
+OpaqueMoveSize unlimited
+
+# }}}
+
+# Colorsets {{{
+
+CleanupColorsets
+Colorset 0 \
+    fg rgb:ff/ff/ff, \
+    bg rgb:30/30/30, \
+    sh rgb:30/30/30, \
+    hi rgb:30/30/30
+
+Colorset 3 \
+    fg rgb:00/00/00, \
+    bg rgb:50/50/50, \
+    sh rgb:50/50/50, \
+    hi rgb:50/50/50
+
+Colorset 4 \
+    fg rgb:00/00/00, \
+    bg rgb:d0/30/30, \
+    sh rgb:d0/30/30, \
+    hi rgb:d0/30/30
+
+Colorset 5 \
+    fg rgb:ff/ff/ff, \
+    bg rgb:50/50/50, \
+    sh rgb:40/40/40, \
+    hi rgb:60/60/60
+
+Colorset 6 \
+    fg rgb:50/50/50, \
+    bg rgb:d0/d0/d0
+
+Colorset 7 \
+    fg rgb:80/80/80
+
+# }}}
+
+# Modules {{{
+
+DestroyModuleConfig FvwmBacker: *
+*FvwmBacker: Command (*) colorset 0
+
+DestroyModuleConfig FvwmScript: *
+*FvwmScript: Path $[FVWM_USERDIR]/scripts
+
+DestroyModuleConfig FvwmDock: *
+*FvwmDock: ButtonGeometry 1x$[fvwm_dock_height]
+*FvwmDock: Geometry $[vp.width]x$[fvwm_dock_height]+0+0
+*FvwmDock: Font "$[fvwm_font]"
+*FvwmDock: Colorset 5
+*FvwmDock: Padding 18 0
+*FvwmDock: Frame 0
+*FvwmDock: Rows 1
+*FvwmDock: Columns 2
+*FvwmDock: ( \
+    Id FvwmGlobalTitle, \
+    800x1, \
+    Font "$[fvwm_font]:style=bold", \
+    Title (Left) "" \
+    )
+*FvwmDock: ( \
+    1x1, \
+    Swallow FvwmDock/ClockLoop `FvwmScript FvwmDock/ClockLoop` \
+    )
+*FvwmDock: ( \
+    Id FvwmClock, \
+    120x1, \
+    Title (Right) "" \
+    )
+
+DestroyModuleConfig GlobalTitleSender: *
+*GlobalTitleSender: Cmd Function
+*GlobalTitleSender: focus_change SendGlobalTitle
+*GlobalTitleSender: Cmd Function
+*GlobalTitleSender: window_name SendGlobalTitle
+
+# }}}
+
+# Styles {{{
+
+Style * \
+    BorderColorset 3, \
+    BorderWidth 1, \
+    EWMHUseStackingOrderHints, \
+    FPGrabFocus, \
+    HandleWidth 2, \
+    HilightBorderColorset 4, \
+    NoIcon, \
+    NoPPosition, \
+    NoTitle, \
+    PositionPlacement m+0 m+0, \
+    ResizeOpaque, \
+    SkipMapping, \
+    ClickToFocus, \
+    SnapAttraction 10 SameType Screen
+
+Style FvwmDock \
+    !Closable, \
+    !Maximizable, \
+    BorderWidth 0, \
+    CirculateSkip, \
+    FixedPosition, \
+    FixedSize, \
+    HandleWidth 0, \
+    NeverFocus, \
+    PositionPlacement 0 0, \
+    StartsOnPage 0 0, \
+    StaysOnTop, \
+    Sticky, \
+    WindowListSkip
+
+Style Firefox \
+    FixedPPosition
+
+MenuStyle * \
+    ActiveColorset 6, \
+    BorderWidth 0, \
+    GreyedColorset 7, \
+    Hilight3DOff, \
+    HilightBack, \
+    ItemFormat "%18.18c", \
+    MenuColorset 5, \
+    SeparatorsLong, \
+    VerticalItemSpacing 6 6
+
+CursorStyle TITLE left_ptr
+CursorStyle DEFAULT left_ptr
+CursorStyle MENU left_ptr
+
+# }}}
+
+# Menus {{{
+
+DestroyMenu RootMenu
+AddToMenu RootMenu
++ "New" Exec exec xterm
++ "Resize" Resize
++ "Move" RaiseAndMove
++ "Iconify" Iconify
++ "" -
++ "Restart" Restart fvwm
++ "Quit" Quit
+
+DestroyMenu WindowMenu
+AddToMenu WindowMenu
++ DynamicPopupAction Function DynamicWindowMenu
+
+# }}}
+
+# Key bindings {{{
+
+Key XF86AudioLowerVolume A A Exec exec amixer set PCM 4%- unmute
+Key XF86AudioRaiseVolume A A Exec exec amixer set PCM 4%+ unmute
+Key XF86AudioMute A A Exec exec amixer set Master toggle
+
+Key Tab A M ShowWindowList
+
+Key Return A 4 Exec exec xterm
+
+Key c A 4 Module FvwmConsole -terminal xterm -geometry 80x10+10-10 $*
+Key l A 4 exec slock
+Key m A 4 Menu RootMenu
+
+# }}}
+
+# Mouse bindings {{{
+
+Mouse 6 A 4 Scroll -$[fvwm_scroll_ratio] 0
+Mouse 7 A 4 Scroll $[fvwm_scroll_ratio] 0
+
+Mouse 1 R A ShowWindowList
+Mouse 2 R A -
+Mouse 3 R A Menu RootMenu
+
+Mouse 1 S A RaiseAndResize
+
+Mouse 1 W M RaiseAndMove
+Mouse 2 W M RaiseAndResize
+Mouse 3 W M Menu WindowMenu
+
+# }}}
+
+# Functions {{{
+
+DestroyFunc ShowWindowList
+AddToFunc ShowWindowList
++ I WindowList $* \
+    CurrentDesk, \
+    CurrentAtEnd, \
+    IconifiedAtEnd, \
+    NoCurrentDeskTitle, \
+    NoHotkeys
+
+DestroyFunc DynamicWindowMenu
+AddToFunc DynamicWindowMenu
++ I DestroyMenu recreate WindowMenu
++ I AddToMenu WindowMenu "Close" Close
++ I AddToMenu WindowMenu "" -
++ I ThisWindow (Maximized) \
+    AddToMenu WindowMenu "Unmax" Maximize toggle
++ I ThisWindow (!Maximized) \
+    AddToMenu WindowMenu "Max" Maximize toggle
++ I ThisWindow (Sticky) \
+    AddToMenu WindowMenu "Unstick" Stick
++ I ThisWindow (!Sticky) \
+    AddToMenu WindowMenu "Stick" Stick
+
+DestroyFunc SendGlobalTitle
+AddToFunc SendGlobalTitle
++ I None (Focused) \
+    SendToModule *FvwmDock ChangeButton FvwmGlobalTitle Title " "
++ I ThisWindow (Focused, AcceptsFocus) \
+    SendToModule *FvwmDock ChangeButton FvwmGlobalTitle Title $[w.name]
+
+DestroyFunc RaiseAndMove
+AddToFunc RaiseAndMove
++ I Raise
++ M Move
++ D Lower
+
+DestroyFunc RaiseAndResize
+AddToFunc RaiseAndResize
++ I Raise
++ M Resize
++ D Lower
+
+DestroyFunc EWMHActivateWindowFunc
+AddToFunc EWMHActivateWindowFunc 
++ I Iconify Off
++ I Focus NoWarp
++ I Raise
+
+DestroyFunc WindowListFunc
+AddToFunc WindowListFunc
++ I Iconify Off
++ I FlipFocus
++ I Raise
+
+DestroyFunc StartFunction
+AddToFunc StartFunction
++ I Module FvwmAuto 250 -menter "Focus NoWarp"
++ I Module FvwmBacker
++ I Module FvwmButtons FvwmDock
++ I Module FvwmEvent GlobalTitleSender
+
+# }}}

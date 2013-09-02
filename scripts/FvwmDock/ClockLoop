@@ -1,0 +1,24 @@
+WindowTitle {FvwmDock/ClockLoop}
+WindowSize 1 1
+Colorset 5
+Init
+Begin
+    Set $Time = (GetOutput {exec date "+%a %b %-d, %R"} 1 -1)
+    Do { SendToModule *FvwmDock ChangeButton FvwmClock Title "} $Time {"}
+End
+
+PeriodicTasks
+Begin 
+  If (RemainderOfDiv (GetTime) 60)==0 Then
+  Begin
+    Set $Time = (GetOutput {exec date "+%a %b %-d, %R"} 1 -1)
+    Do { SendToModule *FvwmDock ChangeButton FvwmClock Title "} $Time {"}
+  End
+End
+
+Widget 1 
+Property
+  Position 0 0
+  Type ItemDraw
+Main
+End
