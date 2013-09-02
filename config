@@ -164,7 +164,6 @@ AddToMenu RootMenu
 + "Move" RaiseAndMove
 + "Iconify" Iconify
 + "" -
-+ "Restart" Restart fvwm
 + "Quit" Quit
 
 DestroyMenu WindowMenu
