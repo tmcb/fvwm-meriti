@@ -108,6 +108,7 @@ Style * \
     BorderColorset 3, \
     BorderWidth 1, \
     EWMHUseStackingOrderHints, \
+    EdgeMoveResistance 10, \
     FPGrabFocus, \
     HandleWidth 2, \
     HilightBorderColorset 4, \
