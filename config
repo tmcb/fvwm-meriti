@@ -235,7 +235,7 @@ DestroyFunc SendGlobalTitle
 AddToFunc SendGlobalTitle
 + I None (Focused) \
     SendToModule *FvwmDock ChangeButton FvwmGlobalTitle Title " "
-+ I ThisWindow (Focused, AcceptsFocus) \
++ I ThisWindow (Focused) \
     SendToModule *FvwmDock ChangeButton FvwmGlobalTitle Title $[w.name]
 
 DestroyFunc RaiseAndMove
