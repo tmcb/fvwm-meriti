@@ -184,7 +184,7 @@ Key Tab A M ShowWindowList
 Key Return A 4 Exec exec xterm
 
 Key c A 4 Module FvwmConsole -terminal xterm -geometry 80x10+10-10 $*
-Key l A 4 exec slock
+Key l A 4 Exec slock
 Key m A 4 Menu RootMenu
 
 # }}}
