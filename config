@@ -6,7 +6,7 @@
 
 # Environment variables {{{
 
-SetEnv fvwm_dock_height 25
+SetEnv fvwm_dock_height 23
 SetEnv fvwm_font "xft:Sans:size=8.5:encoding=iso10646-1"
 SetEnv fvwm_scroll_ratio 5
 
@@ -148,7 +148,7 @@ MenuStyle * \
     ItemFormat "%18.18c", \
     MenuColorset 5, \
     SeparatorsLong, \
-    VerticalItemSpacing 6 6
+    VerticalItemSpacing 5 5
 
 CursorStyle TITLE left_ptr
 CursorStyle DEFAULT left_ptr
