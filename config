@@ -194,15 +194,15 @@ Key m A 4 Menu RootMenu
 Mouse 6 A 4 Scroll -$[fvwm_scroll_ratio] 0
 Mouse 7 A 4 Scroll $[fvwm_scroll_ratio] 0
 
-Mouse 1 R A ShowWindowList
+Mouse 1 R A Menu RootMenu
 Mouse 2 R A -
-Mouse 3 R A Menu RootMenu
+Mouse 3 R A ShowWindowList
 
 Mouse 1 S A RaiseAndResize
 
-Mouse 1 W M RaiseAndMove
-Mouse 2 W M RaiseAndResize
-Mouse 3 W M Menu WindowMenu
+Mouse 1 W 4 RaiseAndMove
+Mouse 2 W 4 Menu WindowMenu
+Mouse 3 W 4 RaiseAndResize
 
 # }}}
 
