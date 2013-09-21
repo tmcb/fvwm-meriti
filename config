@@ -148,7 +148,7 @@ MenuStyle * \
     ItemFormat "%18.18c", \
     MenuColorset 5, \
     SeparatorsLong, \
-    VerticalItemSpacing 5 5
+    VerticalItemSpacing 6 6
 
 CursorStyle TITLE left_ptr
 CursorStyle DEFAULT left_ptr
