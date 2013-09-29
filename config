@@ -223,9 +223,9 @@ AddToFunc DynamicWindowMenu
 + I AddToMenu WindowMenu "Close" Close
 + I AddToMenu WindowMenu "" -
 + I ThisWindow (Maximized) \
-    AddToMenu WindowMenu "Unmax" Maximize toggle
+    AddToMenu WindowMenu "Unmax" BorderMaximize toggle
 + I ThisWindow (!Maximized) \
-    AddToMenu WindowMenu "Max" Maximize toggle
+    AddToMenu WindowMenu "Max" BorderMaximize toggle
 + I ThisWindow (Sticky) \
     AddToMenu WindowMenu "Unstick" Stick
 + I ThisWindow (!Sticky) \
@@ -237,6 +237,13 @@ AddToFunc SendGlobalTitle
     SendToModule *FvwmDock ChangeButton FvwmGlobalTitle Title " "
 + I ThisWindow (Focused) \
     SendToModule *FvwmDock ChangeButton FvwmGlobalTitle Title $[w.name]
+
+DestroyFunc BorderMaximize
+AddToFunc BorderMaximize
++ I ThisWindow (!Maximized) WindowStyle !Borders, !Handles, !Title
++ I ThisWindow (Maximized) DestroyWindowStyle
++ I UpdateStyles
++ I Maximize $*
 
 DestroyFunc RaiseAndMove
 AddToFunc RaiseAndMove
