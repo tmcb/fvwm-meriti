@@ -21,7 +21,7 @@ EdgeResistance -1
 EwmhBaseStruts 0 0 $[fvwm_dock_height] 0
 HideGeometryWindow
 IgnoreModifiers L2
-OpaqueMoveSize unlimited
+OpaqueMoveSize Unlimited
 
 # }}}
 
@@ -64,7 +64,7 @@ Colorset 7 \
 # Modules {{{
 
 DestroyModuleConfig FvwmBacker: *
-*FvwmBacker: Command (*) colorset 0
+*FvwmBacker: Command (*) Colorset 0
 
 DestroyModuleConfig FvwmScript: *
 *FvwmScript: Path $[FVWM_USERDIR]/scripts
@@ -225,11 +225,11 @@ AddToFunc DynamicWindowMenu
 + I AddToMenu WindowMenu "Close" Close
 + I AddToMenu WindowMenu "" -
 + I ThisWindow (!Maximizable) \
-    AddToMenu WindowMenu "Max" Maximize false
+    AddToMenu WindowMenu "Max" Maximize False
 + I ThisWindow (Maximizable, Maximized) \
-    AddToMenu WindowMenu "Unmax" BorderMaximize toggle
+    AddToMenu WindowMenu "Unmax" BorderMaximize Toggle
 + I ThisWindow (Maximizable, !Maximized) \
-    AddToMenu WindowMenu "Max" BorderMaximize toggle
+    AddToMenu WindowMenu "Max" BorderMaximize Toggle
 + I ThisWindow (Sticky) \
     AddToMenu WindowMenu "Unstick" Stick
 + I ThisWindow (!Sticky) \
