@@ -216,7 +216,8 @@ AddToFunc ShowWindowList
     CurrentAtEnd, \
     IconifiedAtEnd, \
     NoCurrentDeskTitle, \
-    NoHotkeys
+    NoHotkeys, \
+    SelectOnRelease Super_L
 
 DestroyFunc DynamicWindowMenu
 AddToFunc DynamicWindowMenu
