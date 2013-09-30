@@ -184,7 +184,7 @@ Key XF86AudioMute A A Exec exec amixer set Master toggle
 
 Key Return A 4 Exec exec xterm
 Key Tab A 4 ShowWindowList
-Key c A 4 Module FvwmConsole -terminal xterm -geometry 80x10+10-10 $*
+Key c A 4 Module FvwmConsole -geometry 80x10+10-10
 Key l A 4 Exec slock
 Key m A 4 Menu RootMenu
 
