@@ -224,9 +224,11 @@ AddToFunc DynamicWindowMenu
 + I DestroyMenu recreate WindowMenu
 + I AddToMenu WindowMenu "Close" Close
 + I AddToMenu WindowMenu "" -
-+ I ThisWindow (Maximized) \
++ I ThisWindow (!Maximizable) \
+    AddToMenu WindowMenu "Max" Maximize false
++ I ThisWindow (Maximizable, Maximized) \
     AddToMenu WindowMenu "Unmax" BorderMaximize toggle
-+ I ThisWindow (!Maximized) \
++ I ThisWindow (Maximizable, !Maximized) \
     AddToMenu WindowMenu "Max" BorderMaximize toggle
 + I ThisWindow (Sticky) \
     AddToMenu WindowMenu "Unstick" Stick
