@@ -175,14 +175,15 @@ AddToMenu WindowMenu
 
 # Key bindings {{{
 
+Key Tab A M -
+
 Key XF86AudioLowerVolume A A Exec exec amixer set PCM 4%- unmute
 Key XF86AudioRaiseVolume A A Exec exec amixer set PCM 4%+ unmute
 Key XF86AudioMute A A Exec exec amixer set Master toggle
 
-Key Tab A M ShowWindowList
 
 Key Return A 4 Exec exec xterm
-
+Key Tab A 4 ShowWindowList
 Key c A 4 Module FvwmConsole -terminal xterm -geometry 80x10+10-10 $*
 Key l A 4 Exec slock
 Key m A 4 Menu RootMenu
