@@ -242,8 +242,10 @@ AddToFunc SendGlobalTitle
 
 DestroyFunc BorderMaximize
 AddToFunc BorderMaximize
-+ I ThisWindow (!Maximized) WindowStyle !Borders, !Handles, !Title
-+ I ThisWindow (Maximized) DestroyWindowStyle
++ I ThisWindow (!Maximized) \
+    WindowStyle !Borders, !Handles, !Title
++ I ThisWindow (Maximized) \
+    DestroyWindowStyle
 + I UpdateStyles
 + I Maximize $*
 
