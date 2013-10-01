@@ -28,35 +28,36 @@ OpaqueMoveSize Unlimited
 # Colorsets {{{
 
 CleanupColorsets
+
 Colorset 0 \
     fg rgb:ff/ff/ff, \
     bg rgb:30/30/30, \
     sh rgb:30/30/30, \
     hi rgb:30/30/30
 
-Colorset 3 \
+Colorset 1 \
     fg rgb:00/00/00, \
     bg rgb:50/50/50, \
     sh rgb:50/50/50, \
     hi rgb:50/50/50
 
-Colorset 4 \
+Colorset 2 \
     fg rgb:00/00/00, \
     bg rgb:d0/30/30, \
     sh rgb:d0/30/30, \
     hi rgb:d0/30/30
 
-Colorset 5 \
+Colorset 3 \
     fg rgb:ff/ff/ff, \
     bg rgb:50/50/50, \
     sh rgb:40/40/40, \
     hi rgb:60/60/60
 
-Colorset 6 \
+Colorset 4 \
     fg rgb:50/50/50, \
     bg rgb:d0/d0/d0
 
-Colorset 7 \
+Colorset 5 \
     fg rgb:80/80/80
 
 # }}}
@@ -73,7 +74,7 @@ DestroyModuleConfig FvwmDock: *
 *FvwmDock: ButtonGeometry 1x$[fvwm_dock_height]
 *FvwmDock: Geometry $[vp.width]x$[fvwm_dock_height]+0+0
 *FvwmDock: Font "$[fvwm_font]"
-*FvwmDock: Colorset 5
+*FvwmDock: Colorset 3
 *FvwmDock: Padding 18 0
 *FvwmDock: Frame 0
 *FvwmDock: Rows 1
@@ -105,13 +106,13 @@ DestroyModuleConfig GlobalTitleSender: *
 # Styles {{{
 
 Style * \
-    BorderColorset 3, \
+    BorderColorset 1, \
     BorderWidth 1, \
     EWMHUseStackingOrderHints, \
     EdgeMoveResistance 10, \
     FPGrabFocus, \
     HandleWidth 2, \
-    HilightBorderColorset 4, \
+    HilightBorderColorset 2, \
     NoIcon, \
     NoPPosition, \
     NoTitle, \
@@ -140,13 +141,13 @@ Style Firefox \
     FixedPPosition
 
 MenuStyle * \
-    ActiveColorset 6, \
+    ActiveColorset 4, \
     BorderWidth 0, \
-    GreyedColorset 7, \
+    GreyedColorset 5, \
     Hilight3DOff, \
     HilightBack, \
     ItemFormat "%18.18c", \
-    MenuColorset 5, \
+    MenuColorset 3, \
     SeparatorsLong, \
     VerticalItemSpacing 6 6
 

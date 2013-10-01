@@ -1,6 +1,6 @@
 WindowTitle {FvwmDock/ClockLoop}
 WindowSize 1 1
-Colorset 5
+Colorset 3
 Init
 Begin
     Set $Time = (GetOutput {exec date "+%a %b %-d, %R"} 1 -1)
