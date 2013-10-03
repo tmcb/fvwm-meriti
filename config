@@ -193,6 +193,8 @@ Key m A 4 Menu RootMenu
 
 # Mouse bindings {{{
 
+Mouse 4 A 4 Nop
+Mouse 5 A 4 Nop
 Mouse 6 A 4 Scroll -$[fvwm_scroll_ratio] 0
 Mouse 7 A 4 Scroll $[fvwm_scroll_ratio] 0
 
