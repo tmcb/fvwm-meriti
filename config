@@ -219,7 +219,6 @@ Mouse 3 W 4 RaiseAndResize
 DestroyFunc ShowWindowList
 AddToFunc ShowWindowList
 + I WindowList $* \
-    CurrentDesk, \
     CurrentAtEnd, \
     IconifiedAtEnd, \
     NoCurrentDeskTitle, \
