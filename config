@@ -95,6 +95,9 @@ DestroyModuleConfig FvwmDock: *
     Title (Right) "" \
     )
 
+DestroyModuleConfig DeskSwitcher: *
+*DeskSwitcher: new_desk "NoWindow All (CurrentDesk, Focused) Focus"
+
 DestroyModuleConfig GlobalTitleSender: *
 *GlobalTitleSender: Cmd Function
 *GlobalTitleSender: focus_change SendGlobalTitle
@@ -292,6 +295,7 @@ AddToFunc StartFunction
 + I Module FvwmAuto 250 -menter "Focus NoWarp"
 + I Module FvwmBacker
 + I Module FvwmButtons FvwmDock
++ I Module FvwmEvent DeskSwitcher
 + I Module FvwmEvent GlobalTitleSender
 
 # }}}
