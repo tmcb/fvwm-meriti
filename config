@@ -258,6 +258,8 @@ AddToFunc DeskFocus
     Focus
 + I NoWindow None (CurrentDesk, Focused) Next (CurrentDesk) \
     Focus
++ I None (CurrentDesk) \
+    GotoPage 0 0
 
 DestroyFunc MoveAndGotoDesk
 AddToFunc MoveAndGotoDesk
