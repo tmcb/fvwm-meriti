@@ -280,6 +280,8 @@ DestroyFunc UnmaximizeAndMove
 AddToFunc UnmaximizeAndMove
 + I ThisWindow (Maximized) \
     BorderMaximize Toggle
++ I TestRc (Match) \
+    Move m-50w m-50w
 + I Move
 
 DestroyFunc RaiseAndMove
