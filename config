@@ -276,10 +276,16 @@ AddToFunc BorderMaximize
 + I UpdateStyles
 + I Maximize $*
 
+DestroyFunc UnmaximizeAndMove
+AddToFunc UnmaximizeAndMove
++ I ThisWindow (Maximized) \
+    BorderMaximize Toggle
++ I Move
+
 DestroyFunc RaiseAndMove
 AddToFunc RaiseAndMove
 + I Raise
-+ M Move
++ M UnmaximizeAndMove
 + D Lower
 
 DestroyFunc RaiseAndResize
