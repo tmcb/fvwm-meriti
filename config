@@ -197,6 +197,9 @@ Key c A 4 Module FvwmConsole -geometry 80x10+10-10
 Key l A 4 Exec slock
 Key m A 4 Menu RootMenu
 
+Key Tab M 4 MenuMoveCursor +1
+Key Tab M 4S MenuMoveCursor -1
+
 # }}}
 
 # Mouse bindings {{{
