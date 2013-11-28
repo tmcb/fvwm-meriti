@@ -281,11 +281,11 @@ AddToFunc BorderMaximize
 
 DestroyFunc UnmaximizeAndMove
 AddToFunc UnmaximizeAndMove
-+ I ThisWindow (Maximized) \
++ M ThisWindow (Maximized) \
     BorderMaximize Toggle
-+ I TestRc (Match) \
++ M TestRc (Match) \
     Move m-50w m-50w
-+ I Move
++ M Move
 
 DestroyFunc RaiseAndMove
 AddToFunc RaiseAndMove
