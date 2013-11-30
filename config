@@ -115,7 +115,6 @@ Style * \
     BorderWidth 1, \
     EWMHUseStackingOrderHints, \
     EdgeMoveResistance 10, \
-    FPGrabFocus, \
     HandleWidth 2, \
     HilightBorderColorset 2, \
     NoIcon, \
