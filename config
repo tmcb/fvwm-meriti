@@ -81,7 +81,7 @@ DestroyModuleConfig FvwmDock: *
 *FvwmDock: Columns 2
 *FvwmDock: ( \
     Id FvwmCurrentHandle, \
-    Action Current Menu WindowMenu, \
+    Action (Mouse 2) Current Menu WindowMenu, \
     800x1, \
     Font "$[fvwm_font]:style=bold", \
     Title (Left) "" \
