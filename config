@@ -283,7 +283,7 @@ AddToFunc BorderMaximize
 DestroyFunc UnmaximizeAndMove
 AddToFunc UnmaximizeAndMove
 + M ThisWindow (Maximized) \
-    BorderMaximize Toggle
+    BorderMaximize Forget
 + M TestRc (Match) \
     Move m-50w m-50w
 + M Move
