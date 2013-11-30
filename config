@@ -80,7 +80,8 @@ DestroyModuleConfig FvwmDock: *
 *FvwmDock: Rows 1
 *FvwmDock: Columns 2
 *FvwmDock: ( \
-    Id FvwmGlobalTitle, \
+    Id FvwmCurrentHandle, \
+    Action Current Menu WindowMenu, \
     800x1, \
     Font "$[fvwm_font]:style=bold", \
     Title (Left) "" \
@@ -235,25 +236,25 @@ AddToFunc ShowWindowList
 DestroyFunc DynamicWindowMenu
 AddToFunc DynamicWindowMenu
 + I DestroyMenu recreate WindowMenu
-+ I AddToMenu WindowMenu "Close" Close
++ I AddToMenu WindowMenu "Close" Current Close
 + I AddToMenu WindowMenu "" -
-+ I ThisWindow (!Maximizable) \
-    AddToMenu WindowMenu "Max" Maximize False
-+ I ThisWindow (Maximizable, Maximized) \
-    AddToMenu WindowMenu "Unmax" BorderMaximize Toggle
-+ I ThisWindow (Maximizable, !Maximized) \
-    AddToMenu WindowMenu "Max" BorderMaximize Toggle
-+ I ThisWindow (Sticky) \
-    AddToMenu WindowMenu "Unstick" Stick
-+ I ThisWindow (!Sticky) \
-    AddToMenu WindowMenu "Stick" Stick
++ I Current (!Maximizable) \
+    AddToMenu WindowMenu "Max" Current Maximize False
++ I Current (Maximizable, !Maximized) \
+    AddToMenu WindowMenu "Max" Current BorderMaximize
++ I Current (Maximizable, Maximized) \
+    AddToMenu WindowMenu "Unmax" Current BorderMaximize
++ I Current (Sticky) \
+    AddToMenu WindowMenu "Unstick" Current Stick
++ I Current (!Sticky) \
+    AddToMenu WindowMenu "Stick" Current Stick
 
 DestroyFunc SendGlobalTitle
 AddToFunc SendGlobalTitle
 + I None (Focused) \
-    SendToModule *FvwmDock ChangeButton FvwmGlobalTitle Title " "
+    SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title " "
 + I ThisWindow (Focused) \
-    SendToModule *FvwmDock ChangeButton FvwmGlobalTitle Title $[w.name]
+    SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title $[w.name]
 
 DestroyFunc DeskFocus
 AddToFunc DeskFocus
