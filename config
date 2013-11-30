@@ -189,8 +189,8 @@ Key XF86AudioMute A A Exec exec amixer set Master toggle
 
 Key bracketleft A 4 GotoDesk -1
 Key bracketright A 4 GotoDesk +1
-Key bracketleft A 4S ThisWindow (Focused) MoveAndGotoDesk -1
-Key bracketright A 4S ThisWindow (Focused) MoveAndGotoDesk +1
+Key bracketleft A 4S Current MoveAndGotoDesk -1
+Key bracketright A 4S Current MoveAndGotoDesk +1
 
 Key Return A 4 Exec exec xterm
 Key Tab A 4 ShowWindowList
@@ -251,9 +251,9 @@ AddToFunc DynamicWindowMenu
 
 DestroyFunc SendGlobalTitle
 AddToFunc SendGlobalTitle
-+ I None (Focused) \
++ I None \
     SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title " "
-+ I ThisWindow (Focused) \
++ I Current \
     SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title $[w.name]
 
 DestroyFunc DeskFocus
