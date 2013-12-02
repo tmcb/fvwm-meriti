@@ -114,17 +114,17 @@ DestroyModuleConfig GlobalTitleSender: *
 Style * \
     BorderColorset 1, \
     BorderWidth 1, \
+    ClickToFocus, \
     EWMHUseStackingOrderHints, \
     EdgeMoveResistance 10, \
     HandleWidth 2, \
     HilightBorderColorset 2, \
     NoIcon, \
-    NoPPosition, \
+    NoUsePPosition, \
     NoTitle, \
     PositionPlacement m+0 m+0, \
     ResizeOpaque, \
     SkipMapping, \
-    ClickToFocus, \
     SnapAttraction 10 SameType Screen
 
 Style FvwmDock \
