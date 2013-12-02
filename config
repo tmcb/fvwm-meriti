@@ -237,16 +237,16 @@ AddToFunc DynamicWindowMenu
 + I DestroyMenu recreate WindowMenu
 + I AddToMenu WindowMenu "Close" Current Close
 + I AddToMenu WindowMenu "" -
-+ I Current (!Maximizable) \
-    AddToMenu WindowMenu "Max" Current Maximize False
-+ I Current (Maximizable, !Maximized) \
-    AddToMenu WindowMenu "Max" Current BorderMaximize
-+ I Current (Maximizable, Maximized) \
-    AddToMenu WindowMenu "Unmax" Current BorderMaximize
-+ I Current (Sticky) \
-    AddToMenu WindowMenu "Unstick" Current Stick
-+ I Current (!Sticky) \
-    AddToMenu WindowMenu "Stick" Current Stick
++ I ThisWindow (!Maximizable) \
+    AddToMenu WindowMenu "Max" Maximize False
++ I ThisWindow (Maximizable, !Maximized) \
+    AddToMenu WindowMenu "Max" BorderMaximize
++ I ThisWindow (Maximizable, Maximized) \
+    AddToMenu WindowMenu "Unmax" BorderMaximize
++ I ThisWindow (Sticky) \
+    AddToMenu WindowMenu "Unstick" Stick
++ I ThisWindow (!Sticky) \
+    AddToMenu WindowMenu "Stick" Stick
 
 DestroyFunc SendGlobalTitle
 AddToFunc SendGlobalTitle
