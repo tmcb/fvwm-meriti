@@ -236,7 +236,7 @@ AddToFunc ShowWindowList
 DestroyFunc DynamicWindowMenu
 AddToFunc DynamicWindowMenu
 + I DestroyMenu recreate WindowMenu
-+ I AddToMenu WindowMenu "Close" Current Close
++ I AddToMenu WindowMenu "Close" Close
 + I AddToMenu WindowMenu "" -
 + I ThisWindow (!Maximizable) \
     AddToMenu WindowMenu "Max" Maximize False
@@ -251,10 +251,10 @@ AddToFunc DynamicWindowMenu
 
 DestroyFunc SendGlobalTitle
 AddToFunc SendGlobalTitle
-+ I None \
-    SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title " "
 + I Current \
     SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title $[w.name]
++ I TestRc (NoMatch) \
+    SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title " "
 
 DestroyFunc DeskFocus
 AddToFunc DeskFocus
