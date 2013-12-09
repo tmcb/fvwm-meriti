@@ -252,9 +252,9 @@ AddToFunc DynamicWindowMenu
 
 DestroyFunc SendGlobalTitle
 AddToFunc SendGlobalTitle
-+ I Current \
++ I ThisWindow (Focused) \
     SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title $[w.name]
-+ I TestRc (NoMatch) \
++ I None (Focused) \
     SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title " "
 
 DestroyFunc DeskFocus
