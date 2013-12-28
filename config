@@ -121,7 +121,7 @@ Style * \
     HandleWidth 2, \
     HilightBorderColorset 2, \
     NoIcon, \
-    NoUsePPosition, \
+    NoPPosition, \
     NoTitle, \
     PositionPlacement m+0 m+0, \
     ResizeOpaque, \
