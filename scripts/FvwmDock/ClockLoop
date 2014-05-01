@@ -33,4 +33,8 @@ Property
   Position 0 0
   Type ItemDraw
 Main
+Case message of
+  SingleClic:
+  Begin
+  End
 End
