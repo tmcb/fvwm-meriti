@@ -92,7 +92,7 @@ DestroyModuleConfig FvwmDock: *
     Action (Mouse 2) Current Menu WindowMenu, \
     ActionOnPress, \
     Font "$[fvwm_font]:style=bold", \
-    Title (Left) "" \
+    Title (Left) " ", \
     )
 *FvwmDock: ( \
     1x1, \
@@ -101,7 +101,7 @@ DestroyModuleConfig FvwmDock: *
 *FvwmDock: ( \
     Id FvwmClock, \
     120x1, \
-    Title (Right) "" \
+    Title (Right) " ", \
     )
 
 DestroyModuleConfig DeskFocuser: *
