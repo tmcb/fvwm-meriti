@@ -168,6 +168,7 @@ MenuStyle * \
 CursorStyle TITLE left_ptr
 CursorStyle DEFAULT left_ptr
 CursorStyle MENU left_ptr
+CursorStyle RESIZE bottom_right_corner
 
 # }}}
 
