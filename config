@@ -336,7 +336,7 @@ AddToFunc EWMHActivateWindowFunc
 DestroyFunc WindowListFunc
 AddToFunc WindowListFunc
 + I Iconify Off
-+ I FlipFocus
++ I Focus
 + I Raise
 
 DestroyFunc StartFunction
