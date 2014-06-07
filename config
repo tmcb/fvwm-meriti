@@ -13,6 +13,7 @@
 # Environment variables {{{
 
 SetEnv fvwm_dock_height 26
+SetEnv fvwm_padding 18
 SetEnv fvwm_font "xft:Sans:size=9:encoding=iso10646-1"
 SetEnv fvwm_scroll_ratio 5
 
@@ -21,7 +22,7 @@ SetEnv fvwm_scroll_ratio 5
 # Misc {{{
 
 DefaultColorset 0
-DefaultFont $[fvwm_font]
+DefaultFont "$[fvwm_font]"
 DesktopSize 4x1
 EdgeScroll 0 0
 EdgeResistance 0
@@ -83,25 +84,41 @@ DestroyModuleConfig FvwmDock: *
 *FvwmDock: Geometry $[vp.width]x$[fvwm_dock_height]+0+0
 *FvwmDock: Font "$[fvwm_font]"
 *FvwmDock: Colorset 3
-*FvwmDock: Padding 18 0
 *FvwmDock: Frame 0
 *FvwmDock: Rows 1
-*FvwmDock: Columns 2
 *FvwmDock: ( \
     Id FvwmCurrentHandle, \
     800x1, \
+    Padding $[fvwm_padding] 0, \
     Action (Mouse 2) Current Menu WindowMenu, \
     ActionOnPress, \
     Font "$[fvwm_font]:style=bold", \
     Title (Left) " ", \
     )
 *FvwmDock: ( \
+    Id FvwmPreviousDesk, \
+    Action (Mouse 1) GoToDesk -1, \
+    Action (Mouse 2) ShowWindowList, \
+    Action (Mouse 3) Current ZapToDesk -1, \
+    12x1, \
+    Icon $[FVWM_USERDIR]/icons/arrow.svg:-0x0", \
+    )
+*FvwmDock: ( \
+    Id FvwmNextDesk, \
+    Action (Mouse 1) GoToDesk +1, \
+    Action (Mouse 2) ShowWindowList, \
+    Action (Mouse 3) Current ZapToDesk +1, \
+    12x1, \
+    Icon $[FVWM_USERDIR]/icons/arrow.svg:0x0", \
+    )
+*FvwmDock: ( \
     1x1, \
-    Swallow FvwmDock/ClockLoop `FvwmScript FvwmDock/ClockLoop` \
+    Swallow FvwmDock/ClockLoop `FvwmScript FvwmDock/ClockLoop`, \
     )
 *FvwmDock: ( \
     Id FvwmClock, \
-    120x1, \
+    100x1, \
+    Padding $[fvwm_padding] 0, \
     Title (Right) " ", \
     )
 
@@ -160,7 +177,7 @@ MenuStyle * \
     GreyedColorset 5, \
     Hilight3DOff, \
     HilightBack, \
-    ItemFormat "%18.18c", \
+    ItemFormat "%$[fvwm_padding].$[fvwm_padding]c", \
     MenuColorset 3, \
     SeparatorsLong, \
     VerticalItemSpacing 6 6
@@ -197,10 +214,10 @@ Key XF86AudioLowerVolume A A Exec exec amixer set PCM 4%- unmute
 Key XF86AudioRaiseVolume A A Exec exec amixer set PCM 4%+ unmute
 Key XF86AudioMute A A Exec exec amixer set Master toggle
 
-Key p A 4 GotoDesk -1
-Key n A 4 GotoDesk +1
-Key p A 4S Current MoveAndGotoDesk -1
-Key n A 4S Current MoveAndGotoDesk +1
+Key p A 4 GoToDesk -1
+Key n A 4 GoToDesk +1
+Key p A 4S Current ZapToDesk -1
+Key n A 4S Current ZapToDesk +1
 
 Key Return A 4 Exec exec xterm
 Key Tab A 4 ShowWindowList
@@ -275,9 +292,9 @@ AddToFunc DeskFocus
 + I None (CurrentDesk) \
     GotoPage 0 0
 
-DestroyFunc MoveAndGotoDesk
-AddToFunc MoveAndGotoDesk
-+ I GotoDesk $0
+DestroyFunc ZapToDesk
+AddToFunc ZapToDesk
++ I GoToDesk $0
 + I MoveToDesk
 + I Focus
 
