@@ -96,6 +96,16 @@ DestroyModuleConfig FvwmDock: *
     Title (Left) " ", \
     )
 *FvwmDock: ( \
+    1x1, \
+    Swallow FvwmDock/ClockLoop `FvwmScript FvwmDock/ClockLoop`, \
+    )
+*FvwmDock: ( \
+    Id FvwmClock, \
+    100x1, \
+    Padding $[fvwm_padding] 0, \
+    Title (Right) " ", \
+    )
+*FvwmDock: ( \
     Id FvwmPreviousDesk, \
     Action (Mouse 1) GoToDesk -1, \
     Action (Mouse 2) ShowWindowList, \
@@ -110,16 +120,6 @@ DestroyModuleConfig FvwmDock: *
     Action (Mouse 3) Current ZapToDesk +1, \
     12x1, \
     Icon $[FVWM_USERDIR]/icons/arrow.svg:0x0", \
-    )
-*FvwmDock: ( \
-    1x1, \
-    Swallow FvwmDock/ClockLoop `FvwmScript FvwmDock/ClockLoop`, \
-    )
-*FvwmDock: ( \
-    Id FvwmClock, \
-    100x1, \
-    Padding $[fvwm_padding] 0, \
-    Title (Right) " ", \
     )
 
 DestroyModuleConfig DeskFocuser: *
