@@ -29,6 +29,7 @@ EdgeResistance 0
 EwmhBaseStruts 0 0 $[fvwm_dock_height] 0
 HideGeometryWindow
 IgnoreModifiers L2
+ImagePath $[FVWM_USERDIR]/icons
 OpaqueMoveSize Unlimited
 
 # }}}
@@ -111,7 +112,7 @@ DestroyModuleConfig FvwmDock: *
     Action (Mouse 2) ShowWindowList, \
     Action (Mouse 3) Current ZapToDesk -1, \
     16x1, \
-    Icon $[FVWM_USERDIR]/icons/arrow.svg:-0x0", \
+    Icon arrow.svg:-0x0", \
     )
 *FvwmDock: ( \
     Id FvwmNextDesk, \
@@ -119,7 +120,7 @@ DestroyModuleConfig FvwmDock: *
     Action (Mouse 2) ShowWindowList, \
     Action (Mouse 3) Current ZapToDesk +1, \
     16x1, \
-    Icon $[FVWM_USERDIR]/icons/arrow.svg:0x0", \
+    Icon arrow.svg:0x0", \
     )
 
 DestroyModuleConfig DeskFocuser: *
