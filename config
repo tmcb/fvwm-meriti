@@ -110,7 +110,7 @@ DestroyModuleConfig FvwmDock: *
     Action (Mouse 1) GoToDesk -1, \
     Action (Mouse 2) ShowWindowList, \
     Action (Mouse 3) Current ZapToDesk -1, \
-    12x1, \
+    16x1, \
     Icon $[FVWM_USERDIR]/icons/arrow.svg:-0x0", \
     )
 *FvwmDock: ( \
@@ -118,7 +118,7 @@ DestroyModuleConfig FvwmDock: *
     Action (Mouse 1) GoToDesk +1, \
     Action (Mouse 2) ShowWindowList, \
     Action (Mouse 3) Current ZapToDesk +1, \
-    12x1, \
+    16x1, \
     Icon $[FVWM_USERDIR]/icons/arrow.svg:0x0", \
     )
 
