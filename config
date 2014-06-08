@@ -112,7 +112,7 @@ DestroyModuleConfig FvwmDock: *
     Action (Mouse 2) ShowWindowList, \
     Action (Mouse 3) Current ZapToDesk -1, \
     16x1, \
-    Icon arrow.svg:-0x0", \
+    Icon "arrow.svg:-0x0", \
     )
 *FvwmDock: ( \
     Id FvwmNextDesk, \
@@ -120,7 +120,7 @@ DestroyModuleConfig FvwmDock: *
     Action (Mouse 2) ShowWindowList, \
     Action (Mouse 3) Current ZapToDesk +1, \
     16x1, \
-    Icon arrow.svg:0x0", \
+    Icon "arrow.svg:0x0", \
     )
 
 DestroyModuleConfig DeskFocuser: *
