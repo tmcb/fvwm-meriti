@@ -91,10 +91,10 @@ DestroyModuleConfig FvwmDock: *
     Id FvwmCurrentHandle, \
     800x1, \
     Padding $[fvwm_padding] 0, \
-    Action (Mouse 2) Current Menu WindowMenu, \
-    ActionOnPress, \
     Font "$[fvwm_font]:style=bold", \
     Title (Left) " ", \
+    ActionOnPress, \
+    Action (Mouse 2) Current Menu WindowMenu, \
     )
 *FvwmDock: ( \
     1x1, \
@@ -108,19 +108,21 @@ DestroyModuleConfig FvwmDock: *
     )
 *FvwmDock: ( \
     Id FvwmPreviousDesk, \
-    Action (Mouse 1) GoToDesk -1, \
-    Action (Mouse 2) ShowWindowList, \
-    Action (Mouse 3) Current ZapToDesk -1, \
     16x1, \
     Icon "arrow.svg:-0x0", \
+    ActionOnPress, \
+    Action (Mouse 1) WaitClick GoToDesk -1, \
+    Action (Mouse 2) ShowWindowList, \
+    Action (Mouse 3) WaitClick Current ZapToDesk -1, \
     )
 *FvwmDock: ( \
     Id FvwmNextDesk, \
-    Action (Mouse 1) GoToDesk +1, \
-    Action (Mouse 2) ShowWindowList, \
-    Action (Mouse 3) Current ZapToDesk +1, \
     16x1, \
     Icon "arrow.svg:0x0", \
+    ActionOnPress, \
+    Action (Mouse 1) WaitClick GoToDesk +1, \
+    Action (Mouse 2) ShowWindowList, \
+    Action (Mouse 3) WaitClick Current ZapToDesk +1, \
     )
 
 DestroyModuleConfig DeskFocuser: *
@@ -254,7 +256,7 @@ Mouse 3 W 4 RaiseAndResize
 
 DestroyFunc ShowWindowList
 AddToFunc ShowWindowList
-+ I WindowList $* \
++ I WindowList $[*] \
     CurrentAtEnd, \
     IconifiedAtEnd, \
     NoCurrentDeskTitle, \
@@ -293,6 +295,10 @@ AddToFunc DeskFocus
 + I None (CurrentDesk) \
     GotoPage 0 0
 
+DestroyFunc WaitClick
+AddToFunc WaitClick 
++ C $[*]
+
 DestroyFunc ZapToDesk
 AddToFunc ZapToDesk
 + I GoToDesk $0
@@ -306,7 +312,7 @@ AddToFunc BorderMaximize
 + I ThisWindow (Maximized) \
     DestroyWindowStyle
 + I UpdateStyles
-+ I Maximize $*
++ I Maximize $[*]
 
 DestroyFunc UnmaximizeAndMove
 AddToFunc UnmaximizeAndMove
