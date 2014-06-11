@@ -102,7 +102,7 @@ DestroyModuleConfig FvwmDock: *
     )
 *FvwmDock: ( \
     Id FvwmClock, \
-    100x1, \
+    120x1, \
     Padding $[fvwm_padding] 0, \
     Title (Right) " ", \
     )
