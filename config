@@ -148,6 +148,7 @@ Style * \
     EdgeMoveResistance 0, \
     HandleWidth 2, \
     HilightBorderColorset 2, \
+    MwmDecor, \
     NoIcon, \
     NoPPosition, \
     NoTitle, \
