@@ -73,12 +73,13 @@ Colorset 5 \
 
 # Modules {{{
 
+DestroyModuleConfig DeskFocuser: *
+*DeskFocuser: Cmd Function
+*DeskFocuser: new_desk DeskFocus
+
 DestroyModuleConfig FvwmBacker: *
 *FvwmBacker: RetainPixmap
 *FvwmBacker: Command (*) Colorset 0
-
-DestroyModuleConfig FvwmScript: *
-*FvwmScript: Path $[FVWM_USERDIR]/scripts
 
 DestroyModuleConfig FvwmDock: *
 *FvwmDock: ButtonGeometry 1x$[fvwm_dock_height]
@@ -125,9 +126,8 @@ DestroyModuleConfig FvwmDock: *
     Action (Mouse 3) WaitClick Current ZapToDesk +1, \
     )
 
-DestroyModuleConfig DeskFocuser: *
-*DeskFocuser: Cmd Function
-*DeskFocuser: new_desk DeskFocus
+DestroyModuleConfig FvwmScript: *
+*FvwmScript: Path $[FVWM_USERDIR]/scripts
 
 DestroyModuleConfig GlobalTitleSender: *
 *GlobalTitleSender: Cmd Function
@@ -157,6 +157,9 @@ Style * \
     SkipMapping, \
     SnapAttraction 10 SameType Screen
 
+Style Firefox \
+    FixedPPosition
+
 Style FvwmDock \
     !Closable, \
     !Maximizable, \
@@ -172,9 +175,6 @@ Style FvwmDock \
     Sticky, \
     WindowListSkip
 
-Style Firefox \
-    FixedPPosition
-
 MenuStyle * \
     ActiveColorset 4, \
     BorderWidth 0, \
@@ -186,10 +186,10 @@ MenuStyle * \
     SeparatorsLong, \
     VerticalItemSpacing 6 6
 
-CursorStyle TITLE left_ptr
 CursorStyle DEFAULT left_ptr
 CursorStyle MENU left_ptr
 CursorStyle RESIZE bottom_right_corner
+CursorStyle TITLE left_ptr
 
 # }}}
 
@@ -256,15 +256,24 @@ Mouse 3 W 4 RaiseAndResize
 # }}}
 
 # Functions {{{
+ 
+DestroyFunc BorderMaximize
+AddToFunc BorderMaximize
++ I ThisWindow (!Maximized) \
+    WindowStyle !Borders, !Handles, !Title
++ I ThisWindow (Maximized) \
+    DestroyWindowStyle
++ I UpdateStyles
++ I Maximize $[*]
 
-DestroyFunc ShowWindowList
-AddToFunc ShowWindowList
-+ I WindowList $[*] \
-    CurrentAtEnd, \
-    IconifiedAtEnd, \
-    NoCurrentDeskTitle, \
-    NoHotkeys, \
-    SelectOnRelease Super_L
+DestroyFunc DeskFocus
+AddToFunc DeskFocus
++ I NoWindow All (CurrentDesk, Focused) \
+    Focus
++ I NoWindow None (CurrentDesk, Focused) Next (CurrentDesk) \
+    Focus
++ I None (CurrentDesk) \
+    GotoPage 0 0
 
 DestroyFunc DynamicWindowMenu
 AddToFunc DynamicWindowMenu
@@ -282,56 +291,11 @@ AddToFunc DynamicWindowMenu
 + I ThisWindow (!Sticky) \
     AddToMenu WindowMenu "Stick" Stick
 
-DestroyFunc SendGlobalTitle
-AddToFunc SendGlobalTitle
-+ I ThisWindow (Focused) \
-    SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title $[w.name]
-+ I None (Focused) \
-    SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title " "
-
-DestroyFunc DeskFocus
-AddToFunc DeskFocus
-+ I NoWindow All (CurrentDesk, Focused) \
-    Focus
-+ I NoWindow None (CurrentDesk, Focused) Next (CurrentDesk) \
-    Focus
-+ I None (CurrentDesk) \
-    GotoPage 0 0
-
-DestroyFunc WaitClick
-AddToFunc WaitClick 
-+ C $[*]
-
-DestroyFunc StickyScroll
-AddToFunc StickyScroll
-+ I ThisWindow (!Sticky) \
-    ThisWindow Stick True
-+ I Scroll $[*]
-+ I TestRc (Match) \
-    ThisWindow Stick False
-
-DestroyFunc ZapToDesk
-AddToFunc ZapToDesk
-+ I GoToDesk $0
-+ I MoveToDesk
-+ I Focus
-
-DestroyFunc BorderMaximize
-AddToFunc BorderMaximize
-+ I ThisWindow (!Maximized) \
-    WindowStyle !Borders, !Handles, !Title
-+ I ThisWindow (Maximized) \
-    DestroyWindowStyle
-+ I UpdateStyles
-+ I Maximize $[*]
-
-DestroyFunc UnmaximizeAndMove
-AddToFunc UnmaximizeAndMove
-+ M ThisWindow (Maximized) \
-    BorderMaximize Forget
-+ M TestRc (Match) \
-    Move m-50w m-50w
-+ M Move
+DestroyFunc EWMHActivateWindowFunc
+AddToFunc EWMHActivateWindowFunc 
++ I Iconify Off
++ I Focus NoWarp
++ I Raise
 
 DestroyFunc RaiseAndMove
 AddToFunc RaiseAndMove
@@ -345,17 +309,21 @@ AddToFunc RaiseAndResize
 + M Resize
 + D Lower
 
-DestroyFunc EWMHActivateWindowFunc
-AddToFunc EWMHActivateWindowFunc 
-+ I Iconify Off
-+ I Focus NoWarp
-+ I Raise
+DestroyFunc SendGlobalTitle
+AddToFunc SendGlobalTitle
++ I ThisWindow (Focused) \
+    SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title $[w.name]
++ I None (Focused) \
+    SendToModule *FvwmDock ChangeButton FvwmCurrentHandle Title " "
 
-DestroyFunc WindowListFunc
-AddToFunc WindowListFunc
-+ I Iconify Off
-+ I FlipFocus
-+ I Raise
+DestroyFunc ShowWindowList
+AddToFunc ShowWindowList
++ I WindowList $[*] \
+    CurrentAtEnd, \
+    IconifiedAtEnd, \
+    NoCurrentDeskTitle, \
+    NoHotkeys, \
+    SelectOnRelease Super_L
 
 DestroyFunc StartFunction
 AddToFunc StartFunction
@@ -364,5 +332,37 @@ AddToFunc StartFunction
 + I Module FvwmButtons FvwmDock
 + I Module FvwmEvent DeskFocuser
 + I Module FvwmEvent GlobalTitleSender
+
+DestroyFunc StickyScroll
+AddToFunc StickyScroll
++ I ThisWindow (!Sticky) \
+    ThisWindow Stick True
++ I Scroll $[*]
++ I TestRc (Match) \
+    ThisWindow Stick False
+
+DestroyFunc UnmaximizeAndMove
+AddToFunc UnmaximizeAndMove
++ M ThisWindow (Maximized) \
+    BorderMaximize Forget
++ M TestRc (Match) \
+    Move m-50w m-50w
++ M Move
+
+DestroyFunc WaitClick
+AddToFunc WaitClick 
++ C $[*]
+
+DestroyFunc WindowListFunc
+AddToFunc WindowListFunc
++ I Iconify Off
++ I FlipFocus
++ I Raise
+
+DestroyFunc ZapToDesk
+AddToFunc ZapToDesk
++ I GoToDesk $0
++ I MoveToDesk
++ I Focus
 
 # }}}
