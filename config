@@ -240,6 +240,8 @@ Mouse 4 A 4 Nop
 Mouse 5 A 4 Nop
 Mouse 6 A 4 Scroll -$[fvwm_scroll_ratio] 0
 Mouse 7 A 4 Scroll $[fvwm_scroll_ratio] 0
+Mouse 6 A 4S StickyScroll -$[fvwm_scroll_ratio] 0
+Mouse 7 A 4S StickyScroll $[fvwm_scroll_ratio] 0
 
 Mouse 1 R A Menu RootMenu
 Mouse 2 R A -
@@ -299,6 +301,14 @@ AddToFunc DeskFocus
 DestroyFunc WaitClick
 AddToFunc WaitClick 
 + C $[*]
+
+DestroyFunc StickyScroll
+AddToFunc StickyScroll
++ I ThisWindow (!Sticky) \
+    ThisWindow Stick True
++ I Scroll $[*]
++ I TestRc (Match) \
+    ThisWindow Stick False
 
 DestroyFunc ZapToDesk
 AddToFunc ZapToDesk
