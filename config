@@ -335,11 +335,12 @@ AddToFunc StartFunction
 
 DestroyFunc StickyScroll
 AddToFunc StickyScroll
++ I Raise
 + I ThisWindow (!Sticky) \
-    ThisWindow Stick True
+    Stick True
 + I Scroll $[*]
 + I TestRc (Match) \
-    ThisWindow Stick False
+    Stick False
 
 DestroyFunc UnmaximizeAndMove
 AddToFunc UnmaximizeAndMove
