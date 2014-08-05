@@ -240,8 +240,6 @@ Mouse 4 A 4 Nop
 Mouse 5 A 4 Nop
 Mouse 6 A 4 Scroll -$[fvwm_scroll_ratio] 0
 Mouse 7 A 4 Scroll $[fvwm_scroll_ratio] 0
-Mouse 6 A 4S StickyScroll -$[fvwm_scroll_ratio] 0
-Mouse 7 A 4S StickyScroll $[fvwm_scroll_ratio] 0
 
 Mouse 1 R A Menu RootMenu
 Mouse 2 R A -
@@ -332,15 +330,6 @@ AddToFunc StartFunction
 + I Module FvwmButtons FvwmDock
 + I Module FvwmEvent DeskFocuser
 + I Module FvwmEvent GlobalTitleSender
-
-DestroyFunc StickyScroll
-AddToFunc StickyScroll
-+ I Raise
-+ I ThisWindow (!Sticky) \
-    Stick True
-+ I Scroll $[*]
-+ I TestRc (Match) \
-    Stick False
 
 DestroyFunc UnmaximizeAndMove
 AddToFunc UnmaximizeAndMove
