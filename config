@@ -196,7 +196,7 @@ CursorStyle TITLE left_ptr
 
 DestroyMenu RootMenu
 AddToMenu RootMenu
-+ "New" Exec exec xterm
++ "New" Exec exec x-terminal-emulator
 + "Resize" Resize
 + "Move" RaiseAndMove
 + "Iconify" Iconify
@@ -222,7 +222,7 @@ Key n A 4 GoToDesk +1
 Key p A 4S Current ZapToDesk -1
 Key n A 4S Current ZapToDesk +1
 
-Key Return A 4 Exec exec xterm
+Key Return A 4 Exec exec x-terminal-emulator
 Key Tab A 4 ShowWindowList
 Key c A 4 Module FvwmConsole -geometry 80x10+10-10
 Key l A 4 Exec slock
