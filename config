@@ -213,8 +213,8 @@ AddToMenu WindowMenu
 
 Key Tab A M -
 
-Key XF86AudioLowerVolume A A Exec exec amixer set PCM 4%- unmute
-Key XF86AudioRaiseVolume A A Exec exec amixer set PCM 4%+ unmute
+Key XF86AudioLowerVolume A A Exec exec amixer set Master 4%- unmute
+Key XF86AudioRaiseVolume A A Exec exec amixer set Master 4%+ unmute
 Key XF86AudioMute A A Exec exec amixer set Master toggle
 
 Key p A 4 GoToDesk -1
