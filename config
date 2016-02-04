@@ -12,9 +12,9 @@
 
 # Environment variables {{{
 
-SetEnv fvwm_dock_height 26
+SetEnv fvwm_dock_height 30
 SetEnv fvwm_padding 18
-SetEnv fvwm_font "xft:Sans:size=9:encoding=iso10646-1"
+SetEnv fvwm_font "xft:Sans:size=10:encoding=iso10646-1"
 
 # }}}
 
